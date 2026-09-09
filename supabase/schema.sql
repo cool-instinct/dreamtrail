@@ -27,10 +27,13 @@ create table if not exists days (
 create table if not exists memories (
   id uuid primary key default gen_random_uuid(),
   trip_id uuid not null references trips(id) on delete cascade,
-  day date not null,
+  day date,  -- nullable: photos whose date matches no trip day stay unassigned in the gallery
   type text not null check (type in ('note','photo')),
   text text,
   storage_path text,
+  taken_at timestamptz,  -- EXIF capture time when present
+  lat double precision,  -- EXIF GPS when present
+  lng double precision,
   owner uuid not null references auth.users(id) default auth.uid(),
   created_at timestamptz not null default now()
 );

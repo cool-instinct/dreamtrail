@@ -310,3 +310,27 @@ footer .heart{font-family:'Fraunces',serif;font-style:italic;font-size:15px;colo
 .authbox-note{font-size:13px;color:var(--ink-dim)}
 .authbox-err{font-size:13px;color:var(--berlin)}
 .empty-trips { text-align: center; padding: 2rem; color: var(--muted, #888); }
+
+/* ---------- gallery ---------- */
+.gallery-drop{position:relative;border:1.5px dashed var(--line);border-radius:16px;padding:34px 20px;text-align:center;color:var(--ink-dim);cursor:pointer;transition:.25s;margin-bottom:26px;background:rgba(23,28,40,.5);font-size:14px}
+.gallery-drop:hover,.gallery-drop.over{border-color:var(--accent);color:var(--accent)}
+.gallery-drop strong{display:block;color:var(--ink);font-weight:500;font-size:16px;margin-bottom:4px}
+.gallery-drop input{position:absolute;inset:0;width:100%;opacity:0;cursor:pointer}
+.upload-list{display:flex;flex-direction:column;gap:8px;margin-bottom:26px}
+.upload-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px}
+.upload-item img{width:40px;height:40px;object-fit:cover;border-radius:8px}
+.upload-item .u-name{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:40%}
+.upload-item .u-status{margin-left:auto;color:var(--ink-dim);text-align:right}
+.upload-item .u-status.ok{color:var(--accent)}
+.upload-item .u-status.err{color:var(--berlin)}
+.g-group{margin-bottom:30px}
+.g-group-h{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
+.g-group-h .g-date{font-family:'Fraunces',serif;font-size:18px}
+.g-group-h .g-city{color:var(--ink-dim);font-size:13px}
+.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.g-item{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.g-item img{width:100%;aspect-ratio:1;object-fit:cover;display:block;cursor:pointer;transition:.25s}
+.g-item img:hover{transform:scale(1.02)}
+.g-item select{width:100%;background:transparent;border:none;border-top:1px solid var(--line);color:var(--ink-dim);padding:8px 10px;font-size:12px;font-family:inherit;cursor:pointer;outline:none}
+.g-item select option{background:var(--card);color:var(--ink)}
+.g-empty{color:var(--ink-dim);text-align:center;padding:30px 0}

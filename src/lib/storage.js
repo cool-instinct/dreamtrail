@@ -55,3 +55,12 @@ export function downscale(file, maxDim, quality) {
     reader.readAsDataURL(file)
   })
 }
+
+export function dataUrlToBlob(dataUrl) {
+  const [head, body] = dataUrl.split(',')
+  const mime = head.match(/:(.*?);/)[1]
+  const bin = atob(body)
+  const arr = new Uint8Array(bin.length)
+  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i)
+  return new Blob([arr], { type: mime })
+}

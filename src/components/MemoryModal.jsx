@@ -1,15 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import { fmtDate, downscale } from '../lib/storage'
+import { fmtDate, downscale, dataUrlToBlob } from '../lib/storage'
 import { addNote, addPhoto } from '../lib/api'
-
-function dataUrlToBlob(dataUrl) {
-  const [head, body] = dataUrl.split(',')
-  const mime = head.match(/:(.*?);/)[1]
-  const bin = atob(body)
-  const arr = new Uint8Array(bin.length)
-  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i)
-  return new Blob([arr], { type: mime })
-}
 
 export default function MemoryModal({ tripId, date, onClose, onSaved, onError }) {
   const [pendingPhotos, setPendingPhotos] = useState([])

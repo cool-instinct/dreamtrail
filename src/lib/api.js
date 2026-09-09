@@ -84,3 +84,21 @@ export async function fetchSharedTrip(token) {
   if (error) throw error
   return data
 }
+
+export async function addPhotoWithMeta(tripId, { day, takenAt, lat, lng }, blob) {
+  const uid = (await supabase.auth.getUser()).data.user.id
+  const path = `${uid}/${tripId}/${crypto.randomUUID()}.jpg`
+  const { error: upErr } = await supabase.storage.from('trip-photos').upload(path, blob, { contentType: 'image/jpeg' })
+  if (upErr) throw upErr
+  const row = { trip_id: tripId, type: 'photo', storage_path: path }
+  if (day) row.day = day
+  if (takenAt) row.taken_at = takenAt
+  if (lat != null && lng != null) { row.lat = lat; row.lng = lng }
+  const { error } = await supabase.from('memories').insert(row)
+  if (error) throw error
+}
+
+export async function updateMemoryDay(memoryId, day) {
+  const { error } = await supabase.from('memories').update({ day }).eq('id', memoryId)
+  if (error) throw error
+}

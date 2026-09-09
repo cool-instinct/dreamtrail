@@ -3,6 +3,7 @@ import { loadTrip, setSharing } from '../lib/api'
 import Header from './Header'
 import Timeline from './Timeline'
 import Places from './Places'
+import Gallery from './Gallery'
 import MemoryModal from './MemoryModal'
 
 export default function TripDetail({ tripId, showToast, onPhotoClick }) {
@@ -54,10 +55,20 @@ export default function TripDetail({ tripId, showToast, onPhotoClick }) {
 
       <div className="tabs">
         <button className={tab === 'timeline' ? 'tab active' : 'tab'} onClick={() => setTab('timeline')}>Timeline</button>
+        <button className={tab === 'photos' ? 'tab active' : 'tab'} onClick={() => setTab('photos')}>Photos</button>
         <button className={tab === 'places' ? 'tab active' : 'tab'} onClick={() => setTab('places')}>Places &amp; documents</button>
       </div>
 
-      {tab === 'timeline' ? (
+      {tab === 'photos' ? (
+        <Gallery
+          trip={trip}
+          days={days}
+          memories={memories}
+          onChanged={reload}
+          onPhotoClick={onPhotoClick}
+          showToast={showToast}
+        />
+      ) : tab === 'timeline' ? (
         <Timeline
           trip={trip}
           days={days}
